@@ -13,7 +13,7 @@
 resource "aws_instance" "roboshop" {
   count = length(var.instances)
   ami           = var.ami_id
-  instance_type = var.instance_type != "mysql" ? "t3.micro" : "t3.small"
+  instance_type = var.instances[count.index] != "mysql" ? "t3.micro" : "t3.small"
   vpc_security_group_ids = [aws_security_group.allow_all.id]
 
 
