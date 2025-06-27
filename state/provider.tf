@@ -8,7 +8,7 @@ terraform {
 
     backend "s3" {
     bucket = "nanda-remote-state"
-    key    = "remote-state"
+    key    = "remote-state-demo"
     region = "us-east-1"
     #dynamodb_table = "nanda-remote-state"
     encrypt = true
