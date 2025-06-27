@@ -1,5 +1,5 @@
 locals {
-  final_name = ${var.Project}-${var.environment}-${var.component}
+  final_name = "${var.Project}-${var.environment}-${var.component}"
   ec2_tags = merge(
     var.common_tags,
     {
