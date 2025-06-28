@@ -7,7 +7,8 @@ resource "aws_instance" "helloworld" {
   tags = var.aws_instance_tags
 
   provisioner "local-exec" {
-  command = "echo The server's IP address is ${self.private_ip} > inventory"
+  command = "echo ${self.private_ip} > inventory"
+  on_failure = continue
   }
 
 }
