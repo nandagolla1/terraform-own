@@ -6,9 +6,24 @@ resource "aws_instance" "helloworld" {
 
   tags = var.aws_instance_tags
 
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = self.public_ip
+  }
+
+
   provisioner "local-exec" {
   command = "echo ${self.private_ip} > inventory"
   on_failure = continue
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo dnf install nginx",
+      "sudo dnf systemctl start nginx"
+    ]
   }
 
 }
