@@ -21,9 +21,16 @@ resource "aws_instance" "helloworld" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo dnf install nginx",
-      "sudo dnf systemctl start nginx"
+      "sudo dnf install nginx -y",
+      "sudo systemctl start nginx"
     ]
+  }
+
+  provisioner "remote-exec" {
+  when = destroy
+  inline = [
+    "sudo systemctl stop nginx"
+  ]
   }
 
 }
